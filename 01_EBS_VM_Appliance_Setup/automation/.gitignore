@@ -1,0 +1,3 @@
+ebs_setup.env
+*.log
+logs/
