@@ -10,7 +10,7 @@ Each folder is a self‑contained topic with a short README explaining **what it
 - [01_EBS_VM_Appliance_Setup](01_EBS_VM_Appliance_Setup/) — import OVA into VirtualBox and start the EBS services.
 
 ### Core technical tracks
-- [02_PLSQL](02_PLSQL/) — packages, procedures, functions, common FND utilities.
+- [02_PLSQL_SQL_INTEGRATION](02_PLSQL_SQL_INTEGRATION/) — base tables + joins per module (verified live), Oracle public APIs (HRMS/AP/AR/INV/OM/PO/FND), and an end-to-end Fusion → OIC → EBS supplier-creation example.
 - [03_Concurrent_Programs](03_Concurrent_Programs/) — executables, parameters, value sets, submission.
 - [04_Reports_BIPublisher](04_Reports_BIPublisher/) — Data Definitions, RTF templates, XML output.
 - [05_WebADI](05_WebADI/) — Integrators, Layouts, Mappings, spreadsheet uploads.
@@ -39,7 +39,9 @@ Pick a folder, read its README, try the sample in a sandbox VM instance, then as
 
 > **Fully working today:** [01_EBS_VM_Appliance_Setup](01_EBS_VM_Appliance_Setup/) — end-to-end automation that turns a freshly-imported Vision OVA into a running EBS instance in ~25 minutes. See [QUICKSTART](01_EBS_VM_Appliance_Setup/QUICKSTART.md).
 >
-> **Other 18 folders:** concept + how-to + sample snippet per topic; full working code is added per-topic on demand.
+> **Also fully built:** [02_PLSQL_SQL_INTEGRATION](02_PLSQL_SQL_INTEGRATION/) — base tables (HRMS, AP, AR, GL, INV, PO, OM, FND), 8 verified Oracle API write-ups, and the Fusion → OIC → EBS supplier integration example.
+>
+> **Other 17 folders:** concept + how-to + sample snippet per topic; full working code is added per-topic on demand.
 
 ## Publishing
 
