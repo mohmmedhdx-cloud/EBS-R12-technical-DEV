@@ -1,50 +1,41 @@
 # EBS R12 Technical Development — Reference Project
 
-A hands-on reference covering the full Oracle E‑Business Suite R12 technical development stack, from booting the VM appliance to every major development track.
+A hands-on reference for the Oracle E-Business Suite R12 technical development stack, built and verified against a live Vision 12.2.12 instance.
 
-Each folder is a self‑contained topic with a short README explaining **what it is**, **how to use it**, and a **sample**. Deeper content (full code, walkthroughs, screenshots) is added per topic in its own dedicated command.
+Each section is self-contained: short README, runnable code/scripts, and verified examples.
 
-## Index
+## Sections
 
-### Environment
-- [01_EBS_VM_Appliance_Setup](01_EBS_VM_Appliance_Setup/) — import OVA into VirtualBox and start the EBS services.
+### [01_EBS_VM_Appliance_Setup](01_EBS_VM_Appliance_Setup/)
+End-to-end automation that turns a freshly-imported Vision OVA into a running EBS instance in ~25 minutes. 10 numbered phases (start DB, enable SYSADMIN, change passwords, configure sqlnet, start apps, update WebLogic, etc.) plus an `automation/` driver script that runs them all unattended. Includes [QUICKSTART.md](01_EBS_VM_Appliance_Setup/QUICKSTART.md).
 
-### Core technical tracks
-- [02_PLSQL_SQL_INTEGRATION](02_PLSQL_SQL_INTEGRATION/) — base tables + joins per module (verified live), Oracle public APIs (HRMS/AP/AR/INV/OM/PO/FND), and an end-to-end Fusion → OIC → EBS supplier-creation example.
-- [03_Concurrent_Programs](03_Concurrent_Programs/) — executables, parameters, value sets, submission.
-- [04_Reports_BIPublisher](04_Reports_BIPublisher/) — Data Definitions, RTF templates, XML output.
-- [05_WebADI](05_WebADI/) — Integrators, Layouts, Mappings, spreadsheet uploads.
-- [06_OAF_Development](06_OAF_Development/) — OA Framework pages, CO/AM/VO/EO in JDeveloper.
-- [07_OAF_Personalization](07_OAF_Personalization/) — runtime personalization via "Personalize Page".
-- [08_Forms_Personalization](08_Forms_Personalization/) — Oracle Forms runtime rules.
-- [09_Workflow](09_Workflow/) — Workflow Builder, notifications, approvals.
+### [02_PLSQL_SQL_INTEGRATION](02_PLSQL_SQL_INTEGRATION/)
+- **Base Tables** — canonical tables + tested joins per module (HRMS, AP, AR, GL, INV, PO, OM, FND). Every query verified against the live Vision DB.
+- **Oracle APIs** — 8 write-ups for the most-used public packages (`fnd_global`, `hr_employee_api`, `ap_vendor_pub_pkg`, `hz_party_v2pub` chain, `ar_invoice_api_pub`, `inv_item_grp`, `oe_order_pub`, `po_document_control_pub`). Every sample executed end-to-end and returned real IDs.
+- **Examples** — full Fusion → OIC → EBS supplier-creation integration: staging table, persistent error log, PL/SQL wrapper around `ap_vendor_pub_pkg.create_vendor`, OIC mapping + Switch + Throw Fault. Verified live (a real `ap_suppliers` row was created from a real Fusion event).
 
-### Setup & misc technical
-- [10_APIs_and_Interfaces](10_APIs_and_Interfaces/) — seeded Oracle APIs + open interface tables.
-- [11_Alerts](11_Alerts/) — Event and Periodic alerts.
-- [12_Flexfields](12_Flexfields/) — KFF and DFF registration and validation.
-- [13_Lookups](13_Lookups/) — FND lookup types and values.
-- [14_Profile_Options](14_Profile_Options/) — hierarchy and runtime access.
-- [15_AOL_FND_Basics](15_AOL_FND_Basics/) — users, responsibilities, menus, functions.
+## Roadmap
 
-### DBA‑side utilities a developer needs
-- [16_AD_Utilities](16_AD_Utilities/) — adadmin, adpatch, adctrl.
-- [17_Clone_RapidClone](17_Clone_RapidClone/) — adpreclone + adcfgclone.
-- [18_FNDLOAD](18_FNDLOAD/) — metadata migration between instances.
-- [19_XDOLoader](19_XDOLoader/) — BI Publisher template migration.
+More sections will be added as separate folders, each delivered as a complete unit (concept → working code → verification):
 
-## How to use this repo
+- Concurrent Programs (executable + parameters + value sets)
+- Reports / BI Publisher (data definition + RTF + XML output)
+- WebADI (integrators + layouts + spreadsheet upload)
+- OAF Development + Personalization
+- Forms Personalization
+- Workflow (Builder + notifications)
+- Alerts, Flexfields, Lookups, Profile Options, AOL/FND
+- AD Utilities, Clone, FNDLOAD, XDOLoader
 
-Pick a folder, read its README, try the sample in a sandbox VM instance, then ask me to deepen that specific topic — e.g. *"expand folder 03 with a full concurrent program example including a value set and a PL/SQL executable"*.
-
-> **Fully working today:** [01_EBS_VM_Appliance_Setup](01_EBS_VM_Appliance_Setup/) — end-to-end automation that turns a freshly-imported Vision OVA into a running EBS instance in ~25 minutes. See [QUICKSTART](01_EBS_VM_Appliance_Setup/QUICKSTART.md).
->
-> **Also fully built:** [02_PLSQL_SQL_INTEGRATION](02_PLSQL_SQL_INTEGRATION/) — base tables (HRMS, AP, AR, GL, INV, PO, OM, FND), 8 verified Oracle API write-ups, and the Fusion → OIC → EBS supplier integration example.
->
-> **Other 17 folders:** concept + how-to + sample snippet per topic; full working code is added per-topic on demand.
+When each is ready it lands here as `0X_<Topic>/`.
 
 ## Publishing
 
-- [LINKEDIN_POST.md](LINKEDIN_POST.md) — two draft posts announcing the VM automation (short and long versions).
-- [PUBLISHING_TO_GITHUB.md](PUBLISHING_TO_GITHUB.md) — step-by-step guide to create the GitHub repo, commit, and push.
-- `.gitignore` excludes `ebs_setup.env`, logs, Oracle wallets, and local Claude/memory dirs.
+- [LINKEDIN_POST.md](LINKEDIN_POST.md) — draft posts for sharing milestones.
+- [PUBLISHING_TO_GITHUB.md](PUBLISHING_TO_GITHUB.md) — git workflow walkthrough.
+- `.gitignore` excludes `ebs_setup.env`, logs, Oracle wallets, and local memory dirs.
+- `.gitattributes` keeps `.sh` files at LF so they run cleanly on the EBS VM.
+
+## License
+
+[MIT](LICENSE)
